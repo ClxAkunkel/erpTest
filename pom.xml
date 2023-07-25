@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>de.complex</groupId>
+        <artifactId>ComplexParentPOM</artifactId>
+        <version>1.0.1</version>
+    </parent>
+
+    <groupId>de.complex.erp</groupId>
+    <artifactId>clxERPParent</artifactId>
+    <version>2.220.2-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>clxERP</name>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <apache-commons-csv.version>1.7</apache-commons-csv.version>
+        <apache-commons-math3.version>3.6.1</apache-commons-math3.version>
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
+        <commons-io.version>2.6</commons-io.version>
+        <eclipselink.version>2.7.4</eclipselink.version>
+        <flyway.version>6.1.4</flyway.version>
+        <hemasoft-lprj.version>1.1</hemasoft-lprj.version>
+        <jasperreports.version>6.7.0</jasperreports.version>
+        <javaee-api.version>8.0.1</javaee-api.version>
+        <javaee-endorsed-api.version>7.0</javaee-endorsed-api.version>
+        <javax-validation-api.version>2.0.1.Final</javax-validation-api.version>
+        <jersey-apache-connector.version>2.30</jersey-apache-connector.version>
+        <junit-jupiter.version>5.9.0</junit-jupiter.version>
+        <cdi-test.version>3.4.0</cdi-test.version>
+        <jakarta-inject.version>2.0.1</jakarta-inject.version>
+        <log4j.version>2.17.0</log4j.version>
+        <mockito-core.version>4.7.0</mockito-core.version>
+        <mockito-jupiter.version>4.6.1</mockito-jupiter.version>
+        <omnifaces.version>3.9</omnifaces.version>
+        <payara.version>5.2020.7</payara.version>
+        <phantomjsdriver.version>1.2.0</phantomjsdriver.version>
+        <powermock.version>2.0.9</powermock.version>
+        <primefaces-extensions.version>7.0.3</primefaces-extensions.version>
+        <primefaces-mde.version>6.1</primefaces-mde.version>
+        <primefaces-themes.version>1.0.10</primefaces-themes.version>
+        <primefaces-web.version>7.0</primefaces-web.version>
+        <spqr-info-cups4j.version>1.1</spqr-info-cups4j.version>
+        <tngtech-archunit.version>0.11.0</tngtech-archunit.version>
+        <twelvemonkeys.version>3.4.2</twelvemonkeys.version>
+
+        <!-- MAVEN PLUGINS -->
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
+        <maven-ear-plugin.version>3.0.2</maven-ear-plugin.version>
+        <maven-ejb-plugin.version>3.0.1</maven-ejb-plugin.version>
+        <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
+        <maven-jaxb2-plugin.version>0.14.0</maven-jaxb2-plugin.version>
+        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+        <maven-remote-resources-plugin.version>1.6.0</maven-remote-resources-plugin.version>
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
+        <yuicompressor-maven-plugin.version>1.5.1</yuicompressor-maven-plugin.version>
+        <maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
+    </properties>
+
+    <modules>
+        <module>clxERP-boundary</module>
+        <module>clxERP-web</module>
+        <module>clxERP-mde</module>
+        <module>clxERP-ear</module>
+        <module>clxERP-report</module>
+        <module>clxERP-portUI</module>
+        <module>clxERP-monitoring</module>
+    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>${javax-validation-api.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <tagNameFormat>Version-@{project.version}</tagNameFormat>
+                    <tagBase>https://complex-it.xp-dev.com/svn/complex/Programm/clxERP/tags</tagBase>
+                    <branchBase>https://complex-it.xp-dev.com/svn/complex/Programm/clxERP/branches</branchBase>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven-clean-plugin.version}</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}/out</directory>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <scm>
+        <connection>scm:svn:https://complex-it.xp-dev.com/svn/complex/Programm/clxERP/branches/Branch-2.220</connection>
+        <developerConnection>scm:svn:https://complex-it.xp-dev.com/svn/complex/Programm/clxERP/branches/Branch-2.220</developerConnection>
+    </scm>
+
+</project>
